@@ -1,2 +1,2 @@
-# cStudy
+# linux_study
 # author: allen
