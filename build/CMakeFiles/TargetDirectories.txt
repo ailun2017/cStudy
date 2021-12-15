@@ -1,0 +1,3 @@
+/home/zal/jack.lin.code/build/CMakeFiles/rebuild_cache.dir
+/home/zal/jack.lin.code/build/CMakeFiles/edit_cache.dir
+/home/zal/jack.lin.code/build/CMakeFiles/main.dir
