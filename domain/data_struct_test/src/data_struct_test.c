@@ -1,3 +1,4 @@
+#define _GNU_SOURCE
 #include "data_struct_test.h"
 #include "circ_queue.h"
 #include <stdio.h>
@@ -7,7 +8,6 @@
 #include <sys/ipc.h>
 #include <sys/shm.h>
 #include <error.h>
-#define _GNU_SOURCE
 #include <pthread.h>
 #include <errno.h>
 #include <sched.h>
