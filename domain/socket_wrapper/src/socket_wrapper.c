@@ -12,9 +12,10 @@
 #include <getopt.h>
 #include <fcntl.h>
 #include <sys/select.h>
-
+#include <sys/epoll.h>
 
 static int g_listenfd;
+static int g_epoll_fd;
 
 static int parse_command_line_long_options(int argc, char* argv[], unsigned short *port)
 {
@@ -50,6 +51,7 @@ static void signal_handler(int sig)
     printf("i have received the signal %d\n", sig);
    // sleep(20);
     close(g_listenfd);
+    close(g_epoll_fd);
     exit(0);
 }
 
@@ -261,4 +263,116 @@ void server_with_select(int argc, char* argv[])
         }
 
     }
-} 
+}
+
+
+void server_with_epoll(int argc, char* argv[])
+{
+    if (argc != 2)
+    {
+        printf("using : ./server --port=val\nexample: ./server --port=5005\n");
+        return;
+    }
+
+    unsigned short port;
+    if (-1 ==  parse_command_line_long_options(argc, argv, &port))
+    {
+        printf("error argc\n");
+        return;
+    }
+    g_listenfd = init_socket(port);
+    if (g_listenfd < 0)
+    {
+        printf("init_socket fail\n");
+        return;
+    }
+    printf("listen fd %d\n", g_listenfd);
+    int socklen = sizeof(struct sockaddr_in);
+    struct sockaddr_in clientaddr;
+
+
+    //set signal
+    struct sigaction newact, oldact;
+    newact.sa_handler = SIG_IGN;
+    sigemptyset(&newact.sa_mask);
+    newact.sa_flags = 0;
+    sigaction(SIGCHLD, &newact, &oldact);
+
+    newact.sa_flags = SA_RESTART;
+    newact.sa_handler = signal_handler;
+    sigaction(SIGINT, &newact, &oldact);
+
+    int clientfd;
+    char buffer[1024];
+    memset(buffer, 0, sizeof(buffer));
+
+    int epoll_fd = epoll_create(10);//size should be > 0, any positive number
+    g_epoll_fd = epoll_fd;
+    if (epoll_fd < 0)
+    {
+        printf("failed to create epoll fd!\n");
+        return;
+    }
+    struct epoll_event ev, event[10];
+    // add socket fd to epoll fd
+    ev.events = EPOLLIN | EPOLLET | EPOLLONESHOT;//读事件，边缘触发，一次性触发
+    ev.data.fd = g_listenfd;//save it in ev
+    if (epoll_ctl(epoll_fd, EPOLL_CTL_ADD, g_listenfd, &ev))
+    {
+        printf("failed to epoll_ctl!\n");
+        return;
+    }
+    
+    while(1)
+    {
+        int num_fd = epoll_wait(epoll_fd, event, sizeof(event), -1);
+        if (num_fd <= 0) continue;
+        int loop = 0;
+        for (; loop < num_fd; loop++)
+        {
+            if (g_listenfd == event[loop].data.fd)
+            {
+                    
+                clientfd = accept(g_listenfd, (struct sockaddr*)&clientaddr, (socklen_t*)&socklen);
+                if (clientfd < 0)
+                {
+                    printf("accept failed!\n");
+                    continue;
+                }
+                printf("client_fd-%d: client（%s) accepted.\n", clientfd, inet_ntoa(clientaddr.sin_addr));
+                // add socket fd to epoll fd again
+                /*ev.events = EPOLLIN | EPOLLET | EPOLLONESHOT;//读事件，边缘触发，一次性触发
+                ev.data.fd = g_listenfd;//save it in ev
+                if (epoll_ctl(epoll_fd, EPOLL_CTL_MOD, g_listenfd, &ev))
+                {
+                    printf("failed to epoll_ctl!\n");
+                    return;
+                }*/
+                // add client fd to epoll fd
+                ev.events = EPOLLIN | EPOLLET;//读事件，边缘触发
+                ev.data.fd = clientfd;//save it in ev
+                if (epoll_ctl(epoll_fd, EPOLL_CTL_ADD, clientfd, &ev))
+                {
+                    printf("failed to epoll_ctl!\n");
+                    return;
+                }
+            }
+            else
+            {
+                clientfd = event[loop].data.fd;
+                printf("clientfd\n");
+                memset(buffer, 0, sizeof(buffer));
+                if (0 >= (recv(clientfd, buffer, 10, 0)))
+                {
+                    printf("client-%d disconnected.\n", clientfd);
+                    close(clientfd);
+                    epoll_ctl(epoll_fd, EPOLL_CTL_DEL, clientfd, &ev);
+                    continue;
+                }
+                printf("client-%d recv %s\n", clientfd, buffer);
+            }
+        }
+        
+    }
+}
+

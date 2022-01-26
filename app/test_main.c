@@ -36,7 +36,7 @@ static int parse_command_line_long_options(int argc, char* argv[], int *test_num
 
 int main(int argc, char* argv[])
 {
-    int test_name_index = CIRC_QUEUE_TEST;
+    int test_name_index = SOCKET_WITH_EPOLL;
    /* if (-1 == parse_command_line_long_options(argc, argv, &test_name_index))
     {
         printf("argc is error!example:./server --test=0\n");
@@ -58,6 +58,11 @@ int main(int argc, char* argv[])
         case CIRC_QUEUE_TEST:
         {
             test_circ_queue();
+            break;
+        }
+        case SOCKET_WITH_EPOLL:
+        {
+            server_with_epoll(argc, argv);
             break;
         }
         default:

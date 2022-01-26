@@ -5,6 +5,7 @@ typedef enum _test_name_num_et
 {
     SOCKET_WITH_MULTI_PID = 0,
     SOCKET_WITH_SELECT,
+    SOCKET_WITH_EPOLL,
     CIRC_QUEUE_TEST,
     MAX_TEST_NUM
 }test_name_num_et;
