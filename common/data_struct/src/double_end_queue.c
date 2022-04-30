@@ -80,7 +80,7 @@ return_t dbeQueueEnqueueInRight(double_end_queue_t* queue, list_node_t* node)
 list_node_t* dbeQueueDequeueInRight(double_end_queue_t* queue)
 {
     list_node_t* dequeued_node = PNULL;
-    if (PNULL = queue)
+    if (PNULL == queue)
     {
         printf("queue is PNULL!\n");
         return PNULL;
@@ -111,7 +111,7 @@ list_node_t* dbeQueueDequeueInRight(double_end_queue_t* queue)
 list_node_t* dbeQueueDequeueInLeft(double_end_queue_t* queue)
 {
     list_node_t* dequeued_node = PNULL;
-    if (PNULL = queue)
+    if (PNULL == queue)
     {
         printf("queue is PNULL!\n");
         return PNULL;
