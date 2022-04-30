@@ -172,7 +172,7 @@ void test_double_end_queue_example()
     UInt8 loop_max = queue.count > 2;
     UInt8 loop = 0;
     UInt8 is_same_elem = JACK_TRUE;
-    for ( ; loop < loop_max; loop+)
+    for ( ; loop < loop_max; loop++)
     {
         p_left_node = (test_double_queue_node_t*)dbeQueueDequeueInLeft(&queue);
         p_right_node = (test_double_queue_node_t*)dbeQueueDequeueInRight(&queue);
