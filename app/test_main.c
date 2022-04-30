@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "data_struct_test.h"
+#include "double_end_queue.h"
+
 
 /*
 static int parse_command_line_long_options(int argc, char* argv[], int *test_num)
@@ -63,6 +65,11 @@ int main(int argc, char* argv[])
         case SOCKET_WITH_EPOLL:
         {
             server_with_epoll(argc, argv);
+            break;
+        }
+        case DOUBLE_END_QUEUE:
+        {
+            test_double_end_queue_example();
             break;
         }
         default:

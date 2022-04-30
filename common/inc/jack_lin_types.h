@@ -26,7 +26,9 @@ typedef UInt8 BOOL;
 #define JACK_FAILURE ((UInt32)0)
 #define JACK_SUCCESS ((UInt32)1)
 
+#ifndef PNULL
 #define PNULL ((void*)0)
+#endif
 
 #define BOOL_COMPARE_AND_SWAP(a,b,c) __sync_bool_compare_and_swap((SInt32*)(a),(SInt32)(b),(SInt32)(c))
 #define FETCH_AND_ADD_EV32(a,b) __sync_fetch_and_add((SInt32*)(a),(b))
