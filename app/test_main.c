@@ -38,7 +38,7 @@ static int parse_command_line_long_options(int argc, char* argv[], int *test_num
 
 int main(int argc, char* argv[])
 {
-    int test_name_index = SOCKET_WITH_EPOLL;
+    int test_name_index = DOUBLE_END_QUEUE;
    /* if (-1 == parse_command_line_long_options(argc, argv, &test_name_index))
     {
         printf("argc is error!example:./server --test=0\n");
