@@ -182,10 +182,11 @@ void test_double_end_queue_example()
     if (JACK_FAILURE == dbeQueueEnqueueInRight(&queue, (list_node_t*)&node5.anchor))
         printf("dbeQueueEnqueueInRight failed!\n");
 
-    printf("init queue count %d\n", queue.count);
+    
     dbeQueuePrint(&queue);
-    UInt8 loop_max = queue.count > 2;
-    UInt8 loop = 0;
+    UInt32 loop_max = queue.count > 2;
+    printf("init queue count %d, loop_max %d\n", queue.count, loop_max);
+    UInt32 loop = 0;
     UInt8 is_same_elem = JACK_TRUE;
     for ( ; loop < loop_max; loop++)
     {
