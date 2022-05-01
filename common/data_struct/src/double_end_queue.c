@@ -1,6 +1,7 @@
 #include "double_end_queue.h"
 #include <stdio.h>
 
+
 void dbeQueueInit(double_end_queue_t* queue)
 {
     if (PNULL == queue)
@@ -11,6 +12,7 @@ void dbeQueueInit(double_end_queue_t* queue)
     queue->count = 0;
     queue->head = PNULL;
     queue->tail = PNULL;
+    pthread_mutex_init(&queue->lock, PNULL);
 }
 
 UInt8 dbeQueueIsEmpty(double_end_queue_t* queue)
@@ -20,7 +22,9 @@ UInt8 dbeQueueIsEmpty(double_end_queue_t* queue)
         printf("queue is PNULL!\n");
         return JACK_FALSE;
     }
+    pthread_mutex_lock(&queue->lock);
     return (queue->count == 0);
+    pthread_mutex_unlock(&queue->lock);
 }
 
 return_t dbeQueueEnqueueInLeft(double_end_queue_t* queue, list_node_t* node)
@@ -30,6 +34,7 @@ return_t dbeQueueEnqueueInLeft(double_end_queue_t* queue, list_node_t* node)
         printf("queue is PNULL!\n");
         return JACK_FAILURE;
     }
+    pthread_mutex_lock(&queue->lock);
 
     if (0 == queue->count)
     {
@@ -47,6 +52,7 @@ return_t dbeQueueEnqueueInLeft(double_end_queue_t* queue, list_node_t* node)
         queue->head = (void*)node;
         queue->count++;
     }
+    pthread_mutex_unlock(&queue->lock);
     return JACK_SUCCESS;
 }
 
@@ -57,6 +63,7 @@ return_t dbeQueueEnqueueInRight(double_end_queue_t* queue, list_node_t* node)
         printf("queue is PNULL!\n");
         return JACK_FAILURE;
     }
+    pthread_mutex_lock(&queue->lock);
 
     if (0 == queue->count)
     {
@@ -74,6 +81,7 @@ return_t dbeQueueEnqueueInRight(double_end_queue_t* queue, list_node_t* node)
         queue->tail = (void*)node;
         queue->count++;
     }
+    pthread_mutex_unlock(&queue->lock);
     return JACK_SUCCESS;
 }
 
@@ -85,6 +93,7 @@ list_node_t* dbeQueueDequeueInRight(double_end_queue_t* queue)
         printf("queue is PNULL!\n");
         return PNULL;
     }
+    pthread_mutex_lock(&queue->lock);
     if (0 == queue->count)
     {
         printf("queue->count is 0!\n");
@@ -105,6 +114,7 @@ list_node_t* dbeQueueDequeueInRight(double_end_queue_t* queue)
         queue->tail = (void*)(((list_node_t*)queue->tail)->prev);
         queue->count--;
     }
+    pthread_mutex_unlock(&queue->lock);
     return dequeued_node;
 }
 
@@ -116,6 +126,7 @@ list_node_t* dbeQueueDequeueInLeft(double_end_queue_t* queue)
         printf("queue is PNULL!\n");
         return PNULL;
     }
+    pthread_mutex_lock(&queue->lock);
     if (0 == queue->count)
     {
         printf("queue->count is 0!\n");
@@ -136,6 +147,7 @@ list_node_t* dbeQueueDequeueInLeft(double_end_queue_t* queue)
         queue->head = (void*)(((list_node_t*)queue->head)->next);
         queue->count--;
     }
+    pthread_mutex_unlock(&queue->lock);
     return dequeued_node;
 }
 

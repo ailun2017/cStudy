@@ -2,6 +2,8 @@
 #define _DOUBLE_END_QUEUE_
 
 #include "jack_lin_types.h"
+#include <pthread.h>
+
 
 typedef struct list_node_t
 {
@@ -14,6 +16,7 @@ typedef struct double_end_queue_t
     void* head;
     void* tail;
     unsigned int count;
+    pthread_mutex_t lock;
 }double_end_queue_t;
 
 typedef struct test_double_queue_node_t
