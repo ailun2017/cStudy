@@ -177,6 +177,33 @@ common/data_struct/src/circ_queue.c.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/common/data_struct/src/circ_queue.c.s
 .PHONY : common/data_struct/src/circ_queue.c.s
 
+common/data_struct/src/double_end_queue.o: common/data_struct/src/double_end_queue.c.o
+
+.PHONY : common/data_struct/src/double_end_queue.o
+
+# target to build an object file
+common/data_struct/src/double_end_queue.c.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/common/data_struct/src/double_end_queue.c.o
+.PHONY : common/data_struct/src/double_end_queue.c.o
+
+common/data_struct/src/double_end_queue.i: common/data_struct/src/double_end_queue.c.i
+
+.PHONY : common/data_struct/src/double_end_queue.i
+
+# target to preprocess a source file
+common/data_struct/src/double_end_queue.c.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/common/data_struct/src/double_end_queue.c.i
+.PHONY : common/data_struct/src/double_end_queue.c.i
+
+common/data_struct/src/double_end_queue.s: common/data_struct/src/double_end_queue.c.s
+
+.PHONY : common/data_struct/src/double_end_queue.s
+
+# target to generate assembly for a file
+common/data_struct/src/double_end_queue.c.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/common/data_struct/src/double_end_queue.c.s
+.PHONY : common/data_struct/src/double_end_queue.c.s
+
 domain/data_struct_test/src/data_struct_test.o: domain/data_struct_test/src/data_struct_test.c.o
 
 .PHONY : domain/data_struct_test/src/data_struct_test.o
@@ -246,6 +273,9 @@ help:
 	@echo "... common/data_struct/src/circ_queue.o"
 	@echo "... common/data_struct/src/circ_queue.i"
 	@echo "... common/data_struct/src/circ_queue.s"
+	@echo "... common/data_struct/src/double_end_queue.o"
+	@echo "... common/data_struct/src/double_end_queue.i"
+	@echo "... common/data_struct/src/double_end_queue.s"
 	@echo "... domain/data_struct_test/src/data_struct_test.o"
 	@echo "... domain/data_struct_test/src/data_struct_test.i"
 	@echo "... domain/data_struct_test/src/data_struct_test.s"
