@@ -148,7 +148,7 @@ void dbeQueuePrint(double_end_queue_t* queue)
     for (; loop < count; loop++)
     {
         printf("%d <---> ", p_node->elem);
-        p_node = (test_double_queue_node_t*)p_node->anchor->next;
+        p_node = (test_double_queue_node_t*)p_node->anchor.next;
     }
     printf("\n");
 }
