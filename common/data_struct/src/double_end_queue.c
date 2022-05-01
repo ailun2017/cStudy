@@ -184,7 +184,7 @@ void test_double_end_queue_example()
 
     
     dbeQueuePrint(&queue);
-    UInt32 loop_max = queue.count > 2;
+    UInt32 loop_max = queue.count >> 2;
     printf("init queue count %d, loop_max %d\n", queue.count, loop_max);
     UInt32 loop = 0;
     UInt8 is_same_elem = JACK_TRUE;
