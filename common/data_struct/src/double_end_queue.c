@@ -139,6 +139,20 @@ list_node_t* dbeQueueDequeueInLeft(double_end_queue_t* queue)
     return dequeued_node;
 }
 
+void dbeQueuePrint(double_end_queue_t* queue)
+{
+    if (PNULL == queue) return;
+    UInt32 count = queue->count;
+    UInt32 loop = 0;
+    test_double_queue_node_t* p_node = (test_double_queue_node_t*)queue->head;
+    for (; loop < count; loop++)
+    {
+        printf("%d <---> ", p_node->elem);
+        p_node = (test_double_queue_node_t*)p_node->anchor->next;
+    }
+    printf("\n");
+}
+
 void test_double_end_queue_example()
 {
     double_end_queue_t queue;
@@ -169,13 +183,16 @@ void test_double_end_queue_example()
         printf("dbeQueueEnqueueInRight failed!\n");
 
     printf("init queue count %d\n", queue.count);
+    dbeQueuePrint(&queue);
     UInt8 loop_max = queue.count > 2;
     UInt8 loop = 0;
     UInt8 is_same_elem = JACK_TRUE;
     for ( ; loop < loop_max; loop++)
     {
         p_left_node = (test_double_queue_node_t*)dbeQueueDequeueInLeft(&queue);
+        dbeQueuePrint(&queue);
         p_right_node = (test_double_queue_node_t*)dbeQueueDequeueInRight(&queue);
+        dbeQueuePrint(&queue);
         if (p_left_node && p_right_node)
         {
             if (p_left_node->elem != p_right_node->elem)
