@@ -41,9 +41,9 @@ return_t dbeQueueEnqueueInLeft(double_end_queue_t* queue, list_node_t* node)
     }
     else
     {
-        ((list_node_t*)(queue->head))->prev = node;
+        ((test_double_queue_node_t*)(queue->head))->anchor.prev = node;
         node->prev = PNULL;
-        node->next = (list_node_t*)(queue->head);
+        node->next = &((test_double_queue_node_t*)(queue->head))->anchor;
         queue->head = (void*)node;
         queue->count++;
     }
@@ -68,8 +68,8 @@ return_t dbeQueueEnqueueInRight(double_end_queue_t* queue, list_node_t* node)
     }
     else
     {
-        ((list_node_t*)queue->tail)->next = node;
-        node->prev = ((list_node_t*)queue->tail);
+        ((test_double_queue_node_t*)queue->tail)->anchor.next = node;
+        node->prev = &((test_double_queue_node_t*)queue->tail)->anchor;
         node->next = PNULL;
         queue->tail = (void*)node;
         queue->count++;
