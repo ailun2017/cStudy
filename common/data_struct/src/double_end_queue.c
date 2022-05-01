@@ -81,7 +81,7 @@ return_t dbeQueueEnqueueInRight(double_end_queue_t* queue, list_node_t* node)
         queue->tail = (void*)node;
         queue->count++;
     }
-    pthread_mutex_unlock(&queue->lock);
+    //pthread_mutex_unlock(&queue->lock);
     return JACK_SUCCESS;
 }
 
@@ -224,5 +224,6 @@ void test_double_end_queue_example()
     {
         printf("this is not the queue what we want\n");
     }
+    pthread_mutex_destroy(&queue.lock);
 }
 
