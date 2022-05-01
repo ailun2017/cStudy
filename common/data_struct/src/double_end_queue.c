@@ -163,13 +163,13 @@ void test_double_end_queue_example()
     test_double_queue_node_t node1 = {0};
     node1.elem = 1;
     test_double_queue_node_t node2 = {0};
-    node1.elem = 2;
+    node2.elem = 2;
     test_double_queue_node_t node3 = {0};
-    node1.elem = 3;
+    node3.elem = 3;
     test_double_queue_node_t node4 = {0};
-    node1.elem = 2;
+    node4.elem = 2;
     test_double_queue_node_t node5 = {0};
-    node1.elem = 1;
+    node5.elem = 1;
 
     if (JACK_FAILURE == dbeQueueEnqueueInRight(&queue, (list_node_t*)&node1.anchor))
         printf("dbeQueueEnqueueInRight failed!\n");
