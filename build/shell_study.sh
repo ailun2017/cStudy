@@ -37,5 +37,11 @@ echo "scale=2;3/8" | bc
 #playing with file descriptors and redirection
 echo "this is test01!" > temp.txt
 echo "retore"
+#use >> to append file
 echo "\nthis is test02!" >> temp.txt
-#study shell at line 15 in 2022.5.10
+
+#redirect stderr and stdout to a single file by converting stderr to stdout using this prefered method:
+ls + 2>&1 | tee temp.txt 
+ls = 2>&1 temp.txt
+
+#study shell at line 24 in 2022.5.10
