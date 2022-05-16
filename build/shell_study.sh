@@ -42,6 +42,40 @@ echo "\nthis is test02!" >> temp.txt
 
 #redirect stderr and stdout to a single file by converting stderr to stdout using this prefered method:
 ls + 2>&1 | tee temp.txt 
-ls = 2>&1 temp.txt
+ls = 2>&1 > temp.txt
 
+#array test
+declare -A fruit
+fruit[apple]=8
+echo "apple price is ${fruit[apple]}"
+echo ${!fruit[*]}
+
+#debug shell script
+set -x
+echo "test debuging"
+set +x
+
+#function
+test_func()
+{
+    echo $1, $2;#print arg1, arg2
+    echo "$@";
+    echo "$*";
+    return 0;
+}
+
+test_func arg1 arg2
+#echo $? # print return value of test_func
+if [ $? -eq 0 ];
+then 
+        echo "test_func ok"
+else
+        echo "test_func failed"
+fi
+export -f test_func # like env variable
+
+#spawn a separate process with subshell
+pwd
+(cd /home; ls)
+pwd
 #study shell at line 24 in 2022.5.10
