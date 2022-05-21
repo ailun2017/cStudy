@@ -40,7 +40,7 @@ static int parse_command_line_long_options(int argc, char* argv[], int *test_num
 
 int main(int argc, char* argv[])
 {
-    int test_name_index = DOUBLE_END_QUEUE;
+    int test_name_index = REVERSE_SINGLE_LINKED_LIST;
    /* if (-1 == parse_command_line_long_options(argc, argv, &test_name_index))
     {
         printf("argc is error!example:./server --test=0\n");
