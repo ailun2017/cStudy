@@ -8,6 +8,7 @@ typedef enum _test_name_num_et
     SOCKET_WITH_EPOLL,
     CIRC_QUEUE_TEST,
     DOUBLE_END_QUEUE,
+    REVERSE_SINGLE_LINKED_LIST,
     MAX_TEST_NUM
 }test_name_num_et;
 
