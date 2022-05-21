@@ -65,7 +65,7 @@ void test_reverse_single_linked_list()
         node[loop].data = (void*)&data[loop];
         insert_single_linked_list_node(&list, &node[loop]);
     }
-    single_linked_list_node_t* p_list_node = list->head;
+    single_linked_list_node_t* p_list_node = list.head;
     while (p_list_node != PNULL)
     {
         printf("%d   ", *((UInt8*)p_list_node->data));
@@ -73,7 +73,7 @@ void test_reverse_single_linked_list()
     }
     printf("\n");
     reverse_single_linked_list(&list);
-    p_list_node = list->head;
+    p_list_node = list.head;
     while (p_list_node != PNULL)
     {
         printf("%d   ", *((UInt8*)p_list_node->data));
