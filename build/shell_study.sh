@@ -183,5 +183,8 @@ cat temp2.txt;
 exit; # use exit to end it
 scriptreplay timing.log output.session # 回放整个过程并执行
 
+#study xargs command
+
+cat temp_xargs.txt | xargs -n 3 ./temp.sh
 
 #study shell at line 24 in 2022.5.10
