@@ -1,4 +1,4 @@
-# Install script for directory: /home/zal/jack.lin.code
+# Install script for directory: /home/jack/cStudy
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/zal/jack.lin.code/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/jack/cStudy/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

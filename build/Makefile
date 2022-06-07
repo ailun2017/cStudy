@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/zal/jack.lin.code
+CMAKE_SOURCE_DIR = /home/jack/cStudy
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/zal/jack.lin.code/build
+CMAKE_BINARY_DIR = /home/jack/cStudy/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zal/jack.lin.code/build/CMakeFiles /home/zal/jack.lin.code/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jack/cStudy/build/CMakeFiles /home/jack/cStudy/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zal/jack.lin.code/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jack/cStudy/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -204,6 +204,60 @@ common/data_struct/src/double_end_queue.c.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/common/data_struct/src/double_end_queue.c.s
 .PHONY : common/data_struct/src/double_end_queue.c.s
 
+common/data_struct/src/single_linked_list.o: common/data_struct/src/single_linked_list.c.o
+
+.PHONY : common/data_struct/src/single_linked_list.o
+
+# target to build an object file
+common/data_struct/src/single_linked_list.c.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/common/data_struct/src/single_linked_list.c.o
+.PHONY : common/data_struct/src/single_linked_list.c.o
+
+common/data_struct/src/single_linked_list.i: common/data_struct/src/single_linked_list.c.i
+
+.PHONY : common/data_struct/src/single_linked_list.i
+
+# target to preprocess a source file
+common/data_struct/src/single_linked_list.c.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/common/data_struct/src/single_linked_list.c.i
+.PHONY : common/data_struct/src/single_linked_list.c.i
+
+common/data_struct/src/single_linked_list.s: common/data_struct/src/single_linked_list.c.s
+
+.PHONY : common/data_struct/src/single_linked_list.s
+
+# target to generate assembly for a file
+common/data_struct/src/single_linked_list.c.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/common/data_struct/src/single_linked_list.c.s
+.PHONY : common/data_struct/src/single_linked_list.c.s
+
+common/data_struct/src/test_quick_sort.o: common/data_struct/src/test_quick_sort.c.o
+
+.PHONY : common/data_struct/src/test_quick_sort.o
+
+# target to build an object file
+common/data_struct/src/test_quick_sort.c.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/common/data_struct/src/test_quick_sort.c.o
+.PHONY : common/data_struct/src/test_quick_sort.c.o
+
+common/data_struct/src/test_quick_sort.i: common/data_struct/src/test_quick_sort.c.i
+
+.PHONY : common/data_struct/src/test_quick_sort.i
+
+# target to preprocess a source file
+common/data_struct/src/test_quick_sort.c.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/common/data_struct/src/test_quick_sort.c.i
+.PHONY : common/data_struct/src/test_quick_sort.c.i
+
+common/data_struct/src/test_quick_sort.s: common/data_struct/src/test_quick_sort.c.s
+
+.PHONY : common/data_struct/src/test_quick_sort.s
+
+# target to generate assembly for a file
+common/data_struct/src/test_quick_sort.c.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/common/data_struct/src/test_quick_sort.c.s
+.PHONY : common/data_struct/src/test_quick_sort.c.s
+
 domain/data_struct_test/src/data_struct_test.o: domain/data_struct_test/src/data_struct_test.c.o
 
 .PHONY : domain/data_struct_test/src/data_struct_test.o
@@ -276,6 +330,12 @@ help:
 	@echo "... common/data_struct/src/double_end_queue.o"
 	@echo "... common/data_struct/src/double_end_queue.i"
 	@echo "... common/data_struct/src/double_end_queue.s"
+	@echo "... common/data_struct/src/single_linked_list.o"
+	@echo "... common/data_struct/src/single_linked_list.i"
+	@echo "... common/data_struct/src/single_linked_list.s"
+	@echo "... common/data_struct/src/test_quick_sort.o"
+	@echo "... common/data_struct/src/test_quick_sort.i"
+	@echo "... common/data_struct/src/test_quick_sort.s"
 	@echo "... domain/data_struct_test/src/data_struct_test.o"
 	@echo "... domain/data_struct_test/src/data_struct_test.i"
 	@echo "... domain/data_struct_test/src/data_struct_test.s"
